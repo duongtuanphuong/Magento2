@@ -1,0 +1,25 @@
+<div class="content-weather">
+
+<?php $weather = $block->getWeather(); ?>
+
+<?php if(null !== $weather): ?>
+<h2>Thời tiết</h2>
+<h2><?php echo $weather->getCity(); ?></h2>
+<?php 
+$newdate = strtotime ( '+7 hour' , strtotime ( $weather->getCreatedAt() ) ) ;
+$newdate = date ( 'Y-m-d H:i:s' , $newdate );
+?>
+<p>updated on <?php echo "$newdate"; ?></p>
+<h3><?php echo $weather->getDescription(); ?></h3>
+<img src="http://openweathermap.org/img/w/<?php echo $weather->getIcon(); ?>.png">
+<hr>
+<ul>
+    <li> <strong><?php echo $weather->getTemp_min(); ?>℃-<?php echo $weather->getTemp_max(); ?>℃</strong></li>
+   
+</ul>
+<?php else: ?>
+<h2>Data not found</h2>
+<?php endif; ?>
+</div>
+
+
